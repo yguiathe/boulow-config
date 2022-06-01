@@ -20,6 +20,7 @@ spring:
         - Path=/user/**
         filters:
         - RewritePath=/user/(?<path>.*), /v1/user/$\{path}
+        - RemoveRequestHeader= Cookie,Set-Cookie
         
       - id: tribe-service
         uri: lb://tribe-service
@@ -27,6 +28,7 @@ spring:
         - Path=/tribe/**
         filters:
         - RewritePath=/tribe/(?<path>.*), /v1/tribe/$\{path}
+        - RemoveRequestHeader= Cookie,Set-Cookie
         
 management:
   endpoints:
