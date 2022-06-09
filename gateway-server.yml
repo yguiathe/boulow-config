@@ -17,17 +17,17 @@ spring:
       - id: user-service
         uri: lb://user-service
         predicates:
-        - Path=/user/**
+        - Path=/usr/**
         filters:
-        - RewritePath=/user/(?<path>.*), /v1/user/$\{path}
+        - RewritePath=/usr/(?<path>.*), /v1/user/$\{path}
         - RemoveRequestHeader= Cookie,Set-Cookie
         
       - id: tribe-service
         uri: lb://tribe-service
         predicates:
-        - Path=/tribe/**
+        - Path=/mtg/**
         filters:
-        - RewritePath=/tribe/(?<path>.*), /v1/tribe/$\{path}
+        - RewritePath=/mtg/(?<path>.*), /v1/$\{path}
         - RemoveRequestHeader= Cookie,Set-Cookie
         
 management:
