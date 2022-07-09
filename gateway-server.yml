@@ -19,7 +19,7 @@ spring:
         predicates:
         - Path=/usr/**
         filters:
-        - RewritePath=/usr/(?<path>.*), /v1/user/$\{path}
+        - RewritePath=/(?<path>.*), /v1/$\{path}
         - RemoveRequestHeader= Cookie,Set-Cookie
         
       - id: tribe-service
@@ -27,7 +27,15 @@ spring:
         predicates:
         - Path=/mtg/**
         filters:
-        - RewritePath=/mtg/(?<path>.*), /v1/$\{path}
+        - RewritePath=/(?<path>.*), /v1/$\{path}
+        - RemoveRequestHeader= Cookie,Set-Cookie
+
+      - id: account-service
+        uri: lb://account-service
+        predicates:
+        - Path=/acct/**
+        filters:
+        - RewritePath=/(?<path>.*), /v1/$\{path}
         - RemoveRequestHeader= Cookie,Set-Cookie
         
 management:
